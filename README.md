@@ -6,3 +6,6 @@
 ### 팀원
 - 경예지, 김경래, 김지혜, 이채현
 
+### SonarCloud
+https://sonarcloud.io/dashboard?id=SE-5
+
