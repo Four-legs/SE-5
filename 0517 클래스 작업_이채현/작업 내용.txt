@@ -1,0 +1,25 @@
+0517 클래스작업_이채현
+
+[클래스 구조 변경]
+(기존) Student, Manager 클래스가 각 Operation 클래스를 소유
+(변경) 각 Operation 클래스가 Student, Manager 클래스를 소유
+
+>>차이점 : 학생, 관리자 계정의 '주체'가 Operation 클래스가 됨으로써,
+	  Student, Manager 클래스가 순수하게 Information의 역할을 할 수 있게 된다.
+
+[메소드 작성]
+StudentOperation.requesting 메소드 작성
+ManagerOperation.recruiting 메소드 작성 (대략적인 흐름만)
+
+각 메소드에서 Notice를 리턴하는 이유는 변경된 Notice의 정보를 갱신하기 위함.
+
+ManagerOperation.CreateNotice 메소드 작성
+GUI에서 각 항목들을 작성한 뒤 게시 버튼을 누르면, 이 메소드를 통해
+실제적인 Notice 객체가 만들어지고, NoticePosting 메소드에 의해 Board에 추가된다.
+
+
+
+[다음에 할 일]
+Scholar 와 그 자식 클래스들 attribute 재검토
+>>재검토 후 recruiting 메소드에서 학생을 선발하는 기능 구현
+(현재 클래스 attribute의 조정이 필요해보임)
