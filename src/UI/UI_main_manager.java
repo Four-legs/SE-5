@@ -24,8 +24,8 @@ public class UI_main_manager extends JFrame {
    /**
     * Create the frame.
     */
-   public UI_main_manager(Manager m, Board b) {
-      this.manager = m;
+   public UI_main_manager(Board b,ManagerOperation mng_oper) {
+
       this.brd = b;
       
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,7 +41,7 @@ public class UI_main_manager extends JFrame {
                System.out.println("공지 게시 버튼 클릭");
                
                dispose();
-               UI_notice_posting notice_posting = new UI_notice_posting(brd,m);
+               UI_notice_posting notice_posting = new UI_notice_posting(brd,mng_oper);
                notice_posting.setVisible(true);
             }
          }
@@ -54,7 +54,9 @@ public class UI_main_manager extends JFrame {
                System.out.println("공지 조회 버튼 클릭");
                
                dispose();
-               Operate oper = new Operate(brd);
+               
+               
+               
               // oper.ViewNotice();
                
                //UI_notice_mng_view notice_mng_view = new UI_notice_mng_view(brd);

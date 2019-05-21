@@ -2,6 +2,8 @@ package Foundation;
 
 import java.util.*;
 
+import Data.Datahandler;
+import Operation.ManagerOperation;
 import User.*;
 import UI.*;
 import Tools.Board;
@@ -13,7 +15,7 @@ public class main {
 	public static Manager mng = new Manager();
 	public static Board brd;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
 		UI_login login = new UI_login();
 		login.setVisible(true);
 
@@ -72,9 +74,15 @@ public class main {
 						continue;
 					} else {
 						
+						//login sucess
+						//datahandler add
+						//Datahandler dh = new Datahandler();
+						
 						System.out.println("肺弊牢 己傍");
 						userNum = Integer.parseInt(savedIDNumber);
-						brd = new Board();
+						
+						//board load
+						//brd = dh.board_load();
 						
 						String lmsInfo = "lmsInfo.txt";
 						File file1 = new File(lmsInfo);
@@ -125,7 +133,8 @@ public class main {
 							
 							System.out.println("包府磊 按眉 积己 己傍");
 							
-							UI_main_manager mng_main = new UI_main_manager(mng, brd);
+							ManagerOperation mng_oper = new ManagerOperation(brd,mng);
+							UI_main_manager mng_main = new UI_main_manager(brd,mng_oper);
 							mng_main.setVisible(true);
 						}
 						break;

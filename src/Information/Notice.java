@@ -54,6 +54,7 @@ public class Notice {
 	public void setExpiredate(Calendar exp) {
 		this.expiredate = exp;
 	}
+	
 	public Calendar getExpiredate() {
 		return this.expiredate;
 	}

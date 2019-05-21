@@ -1,10 +1,13 @@
 package Operation;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 
+import Data.Datahandler_manager;
 import Information.*;
 import Tools.Board;
 import Tools.Recruit;
@@ -81,8 +84,14 @@ public class ManagerOperation extends Operate{
 		return selected;
 	}
 	
-	public void NoticePosting(Notice n) {
+	public void NoticePosting(Notice n) throws FileNotFoundException, IOException {
+		
 		super.brd.addNotice(n);
+		Datahandler_manager dtm = new Datahandler_manager();
+		dtm.board_save(super.brd);
+		
+		//Board test_board = new Board();
+		
 	}
 	
 	public void NoticeDelete(Notice n) {

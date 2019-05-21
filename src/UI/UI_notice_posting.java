@@ -23,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.Date;
 import java.awt.event.ActionEvent;
 
@@ -32,18 +33,19 @@ public class UI_notice_posting extends JFrame {
    private JTextField title_field;
    private JTextField accept_field;
    private String title, content, type, detail; // type; working/honor   detail; type detail
-   //private Calendar expiredate = Calendar.getInstance();
+   private Calendar expiredate = Calendar.getInstance();
    private int year,month,day; //expiredate
    private int accept;
    private Board brd;
    private Scholar s;
-   private Manager man;
+   
+   
    /**
     * Create the frame.
     */
-   public UI_notice_posting(Board b,Manager m) {
+   public UI_notice_posting(Board b,ManagerOperation mng_oper) {
      this.brd = b;
-     this.man = m;
+     
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setBounds(100, 100, 800, 500);
       contentPane = new JPanel();
@@ -154,12 +156,22 @@ public class UI_notice_posting extends JFrame {
               n.setTitle(title);
               n.setAccept(accept);
               n.setContent(content);
-              //n.setExpire_year(year);
-              //n.setExpire_month(month);
-              //n.setExpire_day(day);
+              expiredate.set(Calendar.YEAR, year);
+              expiredate.set(Calendar.MONTH,month);
+              expiredate.set(Calendar.DATE,day);
               
-              ManagerOperation mng_oper = new ManagerOperation(brd,m);
-              mng_oper.NoticePosting(n);
+              n.setExpiredate(expiredate);
+           
+              // notice add
+              //ManagerOperation mng_oper = new ManagerOperation(brd,m);
+              try {
+				mng_oper.NoticePosting(n);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+              
+              
             }
          }
       });
