@@ -1,0 +1,21 @@
+1. ManagerOperation 의 생성자 파라미터 순서 바꿈 (통일되게)
+2. ManagerOperation 의 생성자에 initiate_board 메소드 추가
+	- 이 메소드는 operation이 가지고 있는 board attribute에
+	  소유하고 있는 datahandler의 load_board 메소드의 리턴값을 넣어준다. 즉,
+	  opeartion의 보드를 읽어온 데이터로 초기화해주는 역할을 한다.
+
+3. accounts.dat, board.dat 생성 (테스트용 데이터)
+테스트용으로 만든 데이터파일입니다. 학생 계정은 lee/123 관리자 계정은 man/111 두개만 있음
+보드 데이터는 임의로 만든 notice 하나를 추가한 데이터파일.
+[notice 정보]
+title : "title"
+content : "content"
+Scholarship : Working
+expiredate : 2019.5.27
+
+4. notice의 setexpiredate 메소드 수정
+calendar 객체를 받는 것이 아닌 년, 월, 일을 받아 메소드 내부에서 캘린더 객체를 이용해
+만료기간을 설정하도록 변경.
+
+5. 파일입출력이 필요한 각 객체마다 Serializable interface implement함.
+직렬화를 통한 오브젝트 i/o가 이루어질 수 있음.
