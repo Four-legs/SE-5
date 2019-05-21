@@ -1,11 +1,12 @@
 package Tools;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Information.Scholar;
 import User.Student;
 
-public class Recruit {
+public class Recruit implements Serializable {
 	//this class actually related with recruiting scholarship.
 	//Manager Operation can recruit (each notices)
 	//has information of scholarships, list of students who requested each scholarships.

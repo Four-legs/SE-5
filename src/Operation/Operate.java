@@ -1,8 +1,10 @@
 package Operation;
 
+import java.io.Serializable;
+
 import Tools.Board;
 
-public class Operate {
+public class Operate implements Serializable {
 	//operations of User
 	//in this class, the methods are the common use-case of Student and Manager.
 	

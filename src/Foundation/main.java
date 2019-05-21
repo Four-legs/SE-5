@@ -13,7 +13,7 @@ public class main {
 	public static int userNum = 0;
 	public static Student std = new Student("");
 	public static Manager mng = new Manager();
-	public static Board brd;
+	public static Board brd = new Board();
 
 	public static void main(String[] args) throws ClassNotFoundException {
 		UI_login login = new UI_login();

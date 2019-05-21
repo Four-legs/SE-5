@@ -1,8 +1,10 @@
 package Tools;
 
+import java.io.Serializable;
+
 import Information.Scholar;
 
-public class Request {
+public class Request implements Serializable {
 	//this class expresses a student's request information.
 	//it doesn't actually 'do' request.
 	//Student instance will request with this instance.

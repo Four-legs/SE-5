@@ -1,6 +1,6 @@
 package User;
 
-public class User {
+public class User  {
 	public String ID;
 	public String PW;
 	public String name;

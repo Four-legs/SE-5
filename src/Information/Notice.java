@@ -1,10 +1,11 @@
 package Information;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 import Tools.Recruit;
 
-public class Notice {
+public class Notice implements Serializable {
 	//attributes
 	public String title;	//title of notice
 	public String content;	//content(text) of notice
@@ -58,7 +59,7 @@ public class Notice {
 	public Calendar getExpiredate() {
 		return this.expiredate;
 	}
-
+	
 	public Recruit getRecruit() {
 		return recruit;
 	}
@@ -66,4 +67,5 @@ public class Notice {
 	public void setRecruit(Recruit recruit) {
 		this.recruit = recruit;
 	}
+	
 }

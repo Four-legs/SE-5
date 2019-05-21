@@ -1,6 +1,8 @@
 package Information;
 
-public class Scholar {
+import java.io.Serializable;
+
+public class Scholar implements Serializable {
 	//attributes
 	public String name;
 	public double std_score;
