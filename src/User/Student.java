@@ -1,18 +1,41 @@
 package User;
 
+import java.util.ArrayList;
+import Operation.StudentOperation;
+import Tools.Request;
+
 public class Student extends User {
-	public String name;
+	//attributes
 	public String studentNumber;
-	public String grade;
-	public String email;
-	public String major;
+	public int grade;
+	public int income;
+	public double score;
+	public StudentOperation sop;
+	public ArrayList<Request> ReqList = new ArrayList<Request>();
 	
-	public String getMajor() {
-		return major;
+	//constructor
+	public Student(String stdnum) {
+		this.studentNumber = stdnum;
+		this.type = 1;
 	}
-	public void setMajor(String major) {
-		this.major = major;
+	
+	public Student(String name, String studentNumber, String grade, String income, String score) {
+		this.name = name;
+		this.studentNumber = studentNumber;
+		this.grade = Integer.parseInt(grade);
+		this.income = Integer.parseInt(income);
+		this.score = Double.parseDouble(score);
+		this.type = 1;
 	}
+	
+	//methods
+	public int getIncome() {
+		return income;
+	}
+	public void setIncome(int income) {
+		this.income = income;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -25,18 +48,38 @@ public class Student extends User {
 	public void setStudentNumber(String studentNumber) {
 		this.studentNumber = studentNumber;
 	}
-	public String getGrade() {
+	public int getGrade() {
 		return grade;
 	}
-	public void setGrade(String grade) {
+	public void setGrade(int grade) {
 		this.grade = grade;
 	}
-	public String getEmail() {
-		return email;
+
+	public double getScore() {
+		return score;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setScore(double score) {
+		this.score = score;
 	}
+
+	public StudentOperation getSop() {
+		return sop;
+	}
+
+	public void setSop(StudentOperation sop) {
+		this.sop = sop;
+	}
+
+	public ArrayList<Request> getReqList() {
+		return ReqList;
+	}
+
+	public void setReqList(ArrayList<Request> reqList) {
+		ReqList = reqList;
+	}
+	
+	
 	
 	//String applicationForm;
 	//String 
