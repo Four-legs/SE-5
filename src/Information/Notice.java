@@ -67,5 +67,8 @@ public class Notice implements Serializable {
 	public void setRecruit(Recruit recruit) {
 		this.recruit = recruit;
 	}
+
+	
+	
 	
 }

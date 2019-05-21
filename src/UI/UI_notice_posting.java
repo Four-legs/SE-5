@@ -146,9 +146,6 @@ public class UI_notice_posting extends JFrame {
                }
                else if (type.equals("己利快荐厘切积")) {
                   Honor hr = new Honor("己利快荐厘切积");
-                  
-                  
-                  
                   s = hr;
                }
                
@@ -161,11 +158,12 @@ public class UI_notice_posting extends JFrame {
               expiredate.set(Calendar.DATE,day);
               
               n.setExpiredate(expiredate);
-           
+              setVisible(false);
+              
               // notice add
-              //ManagerOperation mng_oper = new ManagerOperation(brd,m);
               try {
 				mng_oper.NoticePosting(n);
+				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

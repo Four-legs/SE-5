@@ -76,13 +76,13 @@ public class main {
 						
 						//login sucess
 						//datahandler add
-						//Datahandler dh = new Datahandler();
+						Datahandler dh = new Datahandler();
 						
 						System.out.println("로그인 성공");
 						userNum = Integer.parseInt(savedIDNumber);
 						
 						//board load
-						//brd = dh.board_load();
+						brd = dh.board_load();
 						
 						String lmsInfo = "lmsInfo.txt";
 						File file1 = new File(lmsInfo);

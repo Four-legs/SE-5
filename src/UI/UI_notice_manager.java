@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import Operation.ManagerOperation;
 import Tools.Board;
 
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
@@ -17,17 +18,21 @@ import javax.swing.JList;
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 public class UI_notice_manager extends JFrame {
 
 	/**
 	 * Launch the application.
 	 */
+	int index;
 	private JPanel contentPane;
 
 	/**
@@ -43,6 +48,21 @@ public class UI_notice_manager extends JFrame {
 		JButton btnback = new JButton("\uB4A4\uB85C \uAC00\uAE30");
 		
 		JList list = new JList();
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				index = list.getSelectedIndex();
+			}
+		});
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		DefaultListModel list_content = new DefaultListModel();
+		// list title load
+		for(int i=0; i < brd.getNoticeList().size(); i++)
+		{
+			//System.out.printf("list : %s",brd.getNoticeList().get(i).getTitle());
+			list_content.addElement(brd.getNoticeList().get(i).getTitle());
+		}
+		list.setModel(list_content);
+		
 		
 		JLabel l_title = new JLabel("\uC81C\uBAA9");
 		
@@ -54,12 +74,21 @@ public class UI_notice_manager extends JFrame {
 		JLabel l_notice = new JLabel("\uACF5\uC9C0\uC0AC\uD56D");
 		
 		JButton btnview = new JButton("\uBCF4\uAE30");
+		btnview.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// view button click
+				t_title.setText(brd.getNoticeList().get(index).getTitle()); // put title 
+				String content = " accept : " + brd.getNoticeList().get(index).getAccept(); // content create 
+				t_content.setText(content); // put content 
+			}
+		});
 		
 		JButton btnposting = new JButton("\uACF5\uC9C0 \uAC8C\uC2DC");
 		btnposting.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == btnposting)
 				{
+					//posting button click
 					UI_notice_posting notice_post = new UI_notice_posting(brd,mng_oper);
 					notice_post.setVisible(true);
 					
