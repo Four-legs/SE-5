@@ -1,5 +1,5 @@
 1. ManagerOperation 의 생성자 파라미터 순서 바꿈 (통일되게)
-2. ManagerOperation 의 생성자에 initiate_board 메소드 추가
+2. Operation 의 생성자에 initiate_board 메소드 추가
 	- 이 메소드는 operation이 가지고 있는 board attribute에
 	  소유하고 있는 datahandler의 load_board 메소드의 리턴값을 넣어준다. 즉,
 	  opeartion의 보드를 읽어온 데이터로 초기화해주는 역할을 한다.
@@ -19,3 +19,13 @@ calendar 객체를 받는 것이 아닌 년, 월, 일을 받아 메소드 내부에서 캘린더 객체를 �
 
 5. 파일입출력이 필요한 각 객체마다 Serializable interface implement함.
 직렬화를 통한 오브젝트 i/o가 이루어질 수 있음.
+
+6. 각 serializable 클래스마다 선언된 private static final long serialVersionUID = 1L; 는
+직렬화의 안정성을 위한 것임.
+
+7. Data 패키지에 UserListData 클래스 생성. 직렬화를 arraylist로 받을 시 에러가 계속 발생하여
+불가피하게 생성. user의 arraylist를 담은 것 외에는 내용이 없다.
+
+8. 로그인 개선 : Accounts.dat 에 저장된 user 목록에서 사용자를 찾아 로그인
+
+9. main 함수 개선 : 프로그램 구동 전 필요 데이터 받기, 프로그램 구동만 하도록 개선.
