@@ -47,7 +47,7 @@ public class UI_main_student extends JFrame {
             if (e.getSource() == btn_notice) {
                dispose();
                
-               UI_notice_view notice_view = new UI_notice_view();
+               UI_notice_student notice_view = new UI_notice_student();
                notice_view.setVisible(true);
             }
          }
