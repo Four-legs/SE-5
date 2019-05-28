@@ -33,17 +33,19 @@ public class UI_notice_student extends JFrame {
 	 */
 	private JPanel contentPane;
 	int index;
-
+	private Board brd;
 	/**
 	 * Create the frame.
 	 */
-	public UI_notice_student(Board brd, StudentOperation sop) {
+	public UI_notice_student(StudentOperation sop) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-
+		
+		this.brd = sop.getBrd();
+		
 		JList list = new JList();
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
@@ -81,10 +83,22 @@ public class UI_notice_student extends JFrame {
 		});
 		
 		JButton btnback = new JButton("\uB4A4\uB85C \uAC00\uAE30");
-
+		btnback.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+			//back button click
+			dispose();
+			new UI_main_student(sop).setVisible(true);
+		}
+		});
 		JLabel L_title = new JLabel("\uC81C\uBAA9");
 		
 		JButton btn_req = new JButton("\uC2E0\uCCAD");
+		btn_req.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+			//req button click
+			new UI_request(sop,index).setVisible(true);
+		}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)

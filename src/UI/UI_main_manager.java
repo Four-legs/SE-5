@@ -41,7 +41,7 @@ public class UI_main_manager extends JFrame {
             if (e.getSource() == btn_notice_view) {
             	//notice button click
             	dispose();
-            	UI_notice_manager notice_view = new UI_notice_manager(brd,mng_oper);
+            	UI_notice_manager notice_view = new UI_notice_manager(mng_oper);
             	notice_view.setVisible(true);
             }
          }
@@ -69,4 +69,7 @@ public class UI_main_manager extends JFrame {
       );
       contentPane.setLayout(gl_contentPane);
    }
+  
+
+
 }

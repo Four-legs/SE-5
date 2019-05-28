@@ -51,7 +51,28 @@ public class ManagerOperation extends Operate{
 		switch(rec.sch.type) {
 		case 1:		//Working scholarship
 			//re-sort student array of recruit in order of standard elements(score + income)
-			//how about we use variable 'priority'? for example, a*score + (1-a)*income (0<=a<=1)
+			//how about we use variable 'priority'? for example,(a)*income + (1-a)*score (0<=a<=1)
+			
+			Collections.sort(rec.getRequestedStdList(), new Comparator<Student>() {
+				public int compare(Student s1, Student s2) {
+					double a = s1.getScore()*0.1 - 0.9*s1.getIncome();
+					double b = s2.getScore()*0.1 - 0.9*s1.getIncome();
+					
+					if(a < b) return -1;
+					else if(a == b)
+					{
+						if(s1.getIncome() < s2.getIncome())
+						{
+							return -1;
+						}
+						else
+						{
+							return 1;
+						}
+					}
+					else return 1;
+				}
+			});
 			
 			//student array has been re-sorted with ascending order,
 			//so select student from higher index.

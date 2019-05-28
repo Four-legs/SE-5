@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import Data.UserListData;
@@ -66,7 +67,7 @@ public class UI_login extends JFrame {
 		
 		t_id = new JTextField();
 		t_id.setColumns(10);
-		t_pw = new JTextField();
+		t_pw = new JPasswordField();
 		t_pw.setColumns(10);
 		
 		final JButton btnLogin = new JButton("Login");
@@ -91,8 +92,10 @@ public class UI_login extends JFrame {
 							if(Ulist.get(i).getType() == 1) {	//if read User info is about Student,
 								//make StudentOperation instance and attach Student information read.
 								Student stdtemp = (Student) Ulist.get(i);
+								
 								StudentOperation sop = new StudentOperation(stdtemp, brd);
 								login_success = 0;
+								
 								UI_main_student smain = new UI_main_student(sop);
 								smain.setVisible(true);
 								setVisible(false);
@@ -105,6 +108,7 @@ public class UI_login extends JFrame {
 								login_success = 0;
 								UI_main_manager mmain = new UI_main_manager(mop);
 								mmain.setVisible(true);
+								//UI_manager(mop);
 								setVisible(false);
 								break;
 							}
@@ -112,6 +116,8 @@ public class UI_login extends JFrame {
 					}
 					if(login_success == 1) login_fault();
 				}
+
+			
 
 		};
 		btnLogin.addActionListener(btnl);

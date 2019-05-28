@@ -22,7 +22,7 @@ public class main {
 		
 		UI_login login = new UI_login(ud);
 		login.setVisible(true);
-
+		
 	}
 	
 	public static void save(UserListData ud) throws FileNotFoundException, IOException

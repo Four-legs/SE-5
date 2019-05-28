@@ -16,16 +16,12 @@ public class Student extends User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	//constructor
-	public Student(String id, String pw, String stdnum) {
-		super(id, pw);
-		this.studentNumber = stdnum;
-		this.type = 1;
-	}
 	
-	public Student(String id, String pw, String name, String studentNumber) {
+	
+	public Student(String id, String pw, String name, String StudentNumber) {
 		super(id, pw);
 		this.name = name;
-		this.studentNumber = studentNumber;
+		this.studentNumber = StudentNumber;
 		this.type = 1;
 	}
 	
@@ -36,6 +32,7 @@ public class Student extends User implements Serializable{
 	public void setIncome(int income) {
 		this.income = income;
 	}
+	
 	
 	public String getName() {
 		return name;
@@ -63,6 +60,7 @@ public class Student extends User implements Serializable{
 	public void setScore(double score) {
 		this.score = score;
 	}
+
 
 	public StudentOperation getSop() {
 		return sop;

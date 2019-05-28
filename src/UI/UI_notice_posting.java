@@ -44,8 +44,8 @@ public class UI_notice_posting extends JFrame {
    /**
     * Create the frame.
     */
-   public UI_notice_posting(Board b,ManagerOperation mng_oper) {
-     this.brd = b;
+   public UI_notice_posting(ManagerOperation mng_oper) {
+     this.brd = mng_oper.getBrd();
      this.manopr = mng_oper;
      
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -185,7 +185,15 @@ public class UI_notice_posting extends JFrame {
          }
       });
       
-      JButton btn_back = new JButton("\uB4A4\uB85C");
+      JButton btn_exit = new JButton("\uB2EB\uAE30");
+      btn_exit.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent e) {
+      		if(btn_exit == e.getSource())
+      		{
+      			dispose();
+      		}
+      	}
+      });
       
      
       recruit_detail.setModel(new DefaultComboBoxModel(new String[] {"-", "\uC0AC\uBB34\uBCF4\uC870", "\uC2E4\uC2B5\uC2E4 \uAD00\uB9AC", "\uAC15\uC758\uC2E4 \uAD00\uB9AC"}));
@@ -212,7 +220,7 @@ public class UI_notice_posting extends JFrame {
                   .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
                      .addComponent(btn_posting)
                      .addPreferredGap(ComponentPlacement.RELATED)
-                     .addComponent(btn_back))
+                     .addComponent(btn_exit))
                   .addGroup(gl_contentPane.createSequentialGroup()
                      .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
                         .addGroup(gl_contentPane.createSequentialGroup()
@@ -260,7 +268,7 @@ public class UI_notice_posting extends JFrame {
                   .addComponent(content_field, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE))
                .addPreferredGap(ComponentPlacement.UNRELATED)
                .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                  .addComponent(btn_back)
+                  .addComponent(btn_exit)
                   .addComponent(btn_posting))
                .addGap(6))
       );
