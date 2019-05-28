@@ -1,9 +1,12 @@
 package Information;
 
-public class Working extends Scholar{
+import java.io.Serializable;
+
+public class Working extends Scholar implements Serializable{
 	public String Working_type;
 	public int std_income;	//standard of income
 	public int std_grade; 	//standard of grade
+	private static final long serialVersionUID = 1L;
 	
 	public Working(String name) {
 		this.name = name;

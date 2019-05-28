@@ -19,14 +19,15 @@ import java.awt.event.ActionEvent;
 public class UI_main_manager extends JFrame {
 
    private JPanel contentPane;
-   private Manager manager;
+   private ManagerOperation manopr;
    private Board brd;
    /**
     * Create the frame.
     */
-   public UI_main_manager(Board b,ManagerOperation mng_oper) {
+   public UI_main_manager(ManagerOperation mng_oper) {
 
-      this.brd = b;
+      this.brd = mng_oper.getBrd();
+      this.manopr = mng_oper;
       
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setBounds(100, 100, 800, 500);
@@ -40,7 +41,7 @@ public class UI_main_manager extends JFrame {
             if (e.getSource() == btn_notice_view) {
             	//notice button click
             	dispose();
-            	UI_notice_manager notice_view = new UI_notice_manager(b,mng_oper);
+            	UI_notice_manager notice_view = new UI_notice_manager(brd,mng_oper);
             	notice_view.setVisible(true);
             }
          }

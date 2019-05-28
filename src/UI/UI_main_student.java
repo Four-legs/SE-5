@@ -8,6 +8,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Operation.StudentOperation;
+
 import javax.swing.JLabel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -20,14 +23,14 @@ import javax.swing.ImageIcon;
 public class UI_main_student extends JFrame {
 
    private JPanel contentPane;
-   private Student student;
+   private StudentOperation sop;
    private Board brd;
    /**
     * Create the frame.
     */
-   public UI_main_student(Student s, Board b) {
-      this.student = s;
-      this.brd = b;
+   public UI_main_student(StudentOperation sop) {
+      this.sop = sop;
+      this.brd = sop.getBrd();
       
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setBounds(100, 100, 800, 500);
@@ -47,8 +50,8 @@ public class UI_main_student extends JFrame {
             if (e.getSource() == btn_notice) {
                dispose();
                
-               UI_notice_student notice_view = new UI_notice_student();
-               notice_view.setVisible(true);
+               UI_notice_student notice_student = new UI_notice_student(brd, sop);
+               notice_student.setVisible(true);
             }
          }
       });
@@ -60,8 +63,8 @@ public class UI_main_student extends JFrame {
       
       JButton btn_benefit = new JButton("\uC218\uD61C \uB0B4\uC5ED");
       
-      JLabel std_name = new JLabel(student.getName());
-      JLabel std_stdnum = new JLabel(student.getStudentNumber());
+      JLabel std_name = new JLabel(sop.getStudent().getName());
+      JLabel std_stdnum = new JLabel(sop.getStudent().getStudentNumber());
       
       GroupLayout gl_contentPane = new GroupLayout(contentPane);
       gl_contentPane.setHorizontalGroup(

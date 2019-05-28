@@ -13,7 +13,7 @@ public class Datahandler_manager extends Datahandler{
 	public void board_save(Board brd) throws FileNotFoundException, IOException
 	{
 		ObjectOutputStream oos = null;
-		oos= new  ObjectOutputStream(new FileOutputStream("student.dat"));
+		oos= new  ObjectOutputStream(new FileOutputStream("Board.dat"));
 		oos.writeObject(brd);
 		oos.close();
 	}

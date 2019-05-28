@@ -5,7 +5,7 @@ import java.util.Calendar;
 
 import Tools.Recruit;
 
-public class Notice implements Serializable {
+public class Notice implements Serializable{
 	//attributes
 	public String title;	//title of notice
 	public String content;	//content(text) of notice
@@ -13,6 +13,7 @@ public class Notice implements Serializable {
 	public Scholar scholar;	//instance of scholarship
 	public Calendar expiredate = Calendar.getInstance();	//instance of expire date
 	public Recruit recruit;
+	private static final long serialVersionUID = 1L;
 	
 	//constructor
 	public Notice(Scholar s, int accept) {
@@ -52,14 +53,16 @@ public class Notice implements Serializable {
 		return this.content;
 	}
 	
-	public void setExpiredate(Calendar exp) {
-		this.expiredate = exp;
+	public void setExpiredate(int y, int m, int d) {
+		this.expiredate.set(Calendar.YEAR, y);
+		this.expiredate.set(Calendar.MONTH, m);
+		this.expiredate.set(Calendar.DATE, d);
 	}
 	
 	public Calendar getExpiredate() {
 		return this.expiredate;
 	}
-	
+
 	public Recruit getRecruit() {
 		return recruit;
 	}
@@ -67,8 +70,12 @@ public class Notice implements Serializable {
 	public void setRecruit(Recruit recruit) {
 		this.recruit = recruit;
 	}
-
 	
+	public String printExpdate() {
+		return String.format(this.expiredate.YEAR + "-" + expiredate.get(Calendar.MONTH) + "-" + expiredate.get(Calendar.DATE) + "\n");
+	}
 	
-	
+	public String toString() {
+		return String.format(title + "\n" + content);
+	}
 }

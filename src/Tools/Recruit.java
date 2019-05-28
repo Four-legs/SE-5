@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import Information.Scholar;
 import User.Student;
 
-public class Recruit implements Serializable {
+public class Recruit implements Serializable{
 	//this class actually related with recruiting scholarship.
 	//Manager Operation can recruit (each notices)
 	//has information of scholarships, list of students who requested each scholarships.
@@ -18,6 +18,7 @@ public class Recruit implements Serializable {
 	public ArrayList<Student> RequestedStdList = new ArrayList<Student>();
 		//Array of students requested this scholarship 
 	public int accept;	//number of acceptable 
+	private static final long serialVersionUID = 1L;
 	
 	//constructor
 	public Recruit(Scholar sch, int acc) {

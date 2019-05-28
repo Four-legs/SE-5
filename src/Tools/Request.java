@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import Information.Scholar;
 
-public class Request implements Serializable {
+public class Request implements Serializable{
 	//this class expresses a student's request information.
 	//it doesn't actually 'do' request.
 	//Student instance will request with this instance.
@@ -12,6 +12,7 @@ public class Request implements Serializable {
 	//attributes
 	public Scholar sch;	//instance of scholar.
 	public boolean accepted;	//false : rejected, true : accepted
+	private static final long serialVersionUID = 1L;
 	
 	//constructor
 	public Request(Scholar sch) {

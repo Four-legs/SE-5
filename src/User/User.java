@@ -1,10 +1,23 @@
 package User;
 
-public class User  {
+import java.io.Serializable;
+
+public class User implements Serializable{
 	public String ID;
 	public String PW;
 	public String name;
 	int type;			//1 : Student, 2 : Manager
+	private static final long serialVersionUID = 1L;
+	
+	public User() {
+		
+	}
+	
+	public User(String id, String pw) {
+		this.ID = id;
+		this.PW = pw;
+	}
+	
 	public String getID() {
 		return ID;
 	}
@@ -22,6 +35,12 @@ public class User  {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
 	}
 	
 }

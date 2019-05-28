@@ -5,7 +5,7 @@ import Information.Notice;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Board implements Serializable {
+public class Board implements Serializable{
 	//has an array of Notice instance.
 	//Student and Manager 'Observe' this instance. (this can be the part of using observer pattern.)
 	//Student can look up notices and request scholarship through this class.
@@ -13,6 +13,7 @@ public class Board implements Serializable {
 	
 	//attributes
 	public ArrayList<Notice> NoticeList = new ArrayList<Notice>();
+	private static final long serialVersionUID = 1L;
 	
 	//Constructor
 	public Board() {

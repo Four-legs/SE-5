@@ -78,7 +78,8 @@ public class UI_notice_manager extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// view button click
 				t_title.setText(brd.getNoticeList().get(index).getTitle()); // put title 
-				String content = " accept : " + brd.getNoticeList().get(index).getAccept(); // content create 
+				String content = String.format("모집 인원 : " + brd.getNoticeList().get(index).getAccept() + "\n마감일 : " + 
+						brd.getNoticeList().get(index).printExpdate() + "\n" + brd.getNoticeList().get(index).getContent());
 				t_content.setText(content); // put content 
 			}
 		});
@@ -155,13 +156,6 @@ public class UI_notice_manager extends JFrame {
 					.addGap(35))
 		);
 		contentPane.setLayout(gl_contentPane);
-		
-	
-		
-	
-		
-		
-		
 	
 	}
 }

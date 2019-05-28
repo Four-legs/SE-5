@@ -38,6 +38,7 @@ public class UI_notice_posting extends JFrame {
    private int accept;
    private Board brd;
    private Scholar s;
+   private ManagerOperation manopr;
    
    
    /**
@@ -45,6 +46,7 @@ public class UI_notice_posting extends JFrame {
     */
    public UI_notice_posting(Board b,ManagerOperation mng_oper) {
      this.brd = b;
+     this.manopr = mng_oper;
      
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setBounds(100, 100, 800, 500);
@@ -142,34 +144,43 @@ public class UI_notice_posting extends JFrame {
                   wr.setWorking_type(detail);
                   wr.setstd_score(4);
                   
-                  s = wr;
+                  Notice n = new Notice(wr, accept);
+                  
+                  n.setTitle(title);
+                  n.setAccept(accept);
+                  n.setContent(content);
+                  expiredate.set(Calendar.YEAR, year);
+                  expiredate.set(Calendar.MONTH,month);
+                  expiredate.set(Calendar.DATE,day);
+                  //n.setExpiredate(expiredate);
+                  
+                  System.out.print(n.toString());
+                  
+                  try {
+      				mng_oper.NoticePosting(n);
+      			} catch (IOException e1) {
+      				// TODO Auto-generated catch block
+      			e1.printStackTrace();
+      			}
                }
                else if (type.equals("己利快荐厘切积")) {
                   Honor hr = new Honor("己利快荐厘切积");
-                  s = hr;
+                  Notice n = new Notice(hr, accept);
+                  
+                  n.setTitle(title);
+                  n.setAccept(accept);
+                  n.setContent(content);
+                  n.setExpiredate(year, month, day);
+                  
+                  System.out.print(n.toString());
+                  
+                  try {
+      				mng_oper.NoticePosting(n);
+      			} catch (IOException e1) {
+      				// TODO Auto-generated catch block
+      			e1.printStackTrace();
+      			}
                }
-               
-              Notice n = new Notice(s, accept);
-              n.setTitle(title);
-              n.setAccept(accept);
-              n.setContent(content);
-              expiredate.set(Calendar.YEAR, year);
-              expiredate.set(Calendar.MONTH,month);
-              expiredate.set(Calendar.DATE,day);
-              
-              n.setExpiredate(expiredate);
-              setVisible(false);
-              
-              // notice add
-              try {
-				mng_oper.NoticePosting(n);
-				
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-              
-              
             }
          }
       });

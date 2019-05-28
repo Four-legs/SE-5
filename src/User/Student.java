@@ -1,10 +1,11 @@
 package User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import Operation.StudentOperation;
 import Tools.Request;
 
-public class Student extends User {
+public class Student extends User implements Serializable{
 	//attributes
 	public String studentNumber;
 	public int grade;
@@ -12,19 +13,19 @@ public class Student extends User {
 	public double score;
 	public StudentOperation sop;
 	public ArrayList<Request> ReqList = new ArrayList<Request>();
+	private static final long serialVersionUID = 1L;
 	
 	//constructor
-	public Student(String stdnum) {
+	public Student(String id, String pw, String stdnum) {
+		super(id, pw);
 		this.studentNumber = stdnum;
 		this.type = 1;
 	}
 	
-	public Student(String name, String studentNumber, String grade, String income, String score) {
+	public Student(String id, String pw, String name, String studentNumber) {
+		super(id, pw);
 		this.name = name;
 		this.studentNumber = studentNumber;
-		this.grade = Integer.parseInt(grade);
-		this.income = Integer.parseInt(income);
-		this.score = Double.parseDouble(score);
 		this.type = 1;
 	}
 	

@@ -6,12 +6,28 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Data.UserListData;
+import Operation.ManagerOperation;
+import Operation.StudentOperation;
+import Tools.Board;
+import User.Manager;
+import User.Student;
+import User.User;
+
 import javax.swing.JLabel;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -27,12 +43,14 @@ public class UI_login extends JFrame {
 	private JTextField t_pw;
 	private String id,pw;
 	private int check_login=0;
+	private Board brd = new Board();
 	
 	JLabel L_notice = new JLabel("* YES \uD1B5\uD569 \uC2DC\uC2A4\uD15C ID/PW \uB85C \uB85C\uADF8\uC778 \uD558\uC138\uC694 *");
 	/**
 	 * Create the frame.
 	 */
-	public UI_login() {
+	public UI_login(UserListData ud) {
+		ArrayList<User> Ulist = ud.getUlist();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 539, 425);
 		contentPane = new JPanel();
@@ -57,15 +75,44 @@ public class UI_login extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(e.getSource() == btnLogin)
-				{
-					setCheck_login(1);
+				int login_success = 1;			//when login successes, this integer be set 0.
+				
+					
+					//get id, pw
 					pw = t_pw.getText();
 					id = t_id.getText();
 					
+					//find account that has same id and pw.
+					for(int i = 0; i < Ulist.size(); i++) {
+						if(Ulist.get(i).ID.equals(id) && Ulist.get(i).PW.equals(pw)) {
+							System.out.println(Ulist.get(i).ID);
+							System.out.println(Ulist.get(i).PW);
+							System.out.println(Ulist.get(i).getType());
+							if(Ulist.get(i).getType() == 1) {	//if read User info is about Student,
+								//make StudentOperation instance and attach Student information read.
+								Student stdtemp = (Student) Ulist.get(i);
+								StudentOperation sop = new StudentOperation(stdtemp, brd);
+								login_success = 0;
+								UI_main_student smain = new UI_main_student(sop);
+								smain.setVisible(true);
+								setVisible(false);
+								break;
+							}
+							else {		//if read info is about manager
+								//make ManagerOperation instance and attach Manager information read.
+								Manager mantemp = (Manager) Ulist.get(i);
+								ManagerOperation mop = new ManagerOperation(mantemp, brd);
+								login_success = 0;
+								UI_main_manager mmain = new UI_main_manager(mop);
+								mmain.setVisible(true);
+								setVisible(false);
+								break;
+							}
+						}
+					}
+					if(login_success == 1) login_fault();
 				}
-			}
-			
+
 		};
 		btnLogin.addActionListener(btnl);
 		
@@ -139,7 +186,10 @@ public class UI_login extends JFrame {
 	
 	public void login_fault() {
 		L_notice.setText(" * 로그인 정보가 일치하지 않습니다 * ");
+		
 	}
+	
+	
 
 	
 }

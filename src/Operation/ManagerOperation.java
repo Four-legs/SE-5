@@ -21,20 +21,20 @@ public class ManagerOperation extends Operate{
 
 	//attributes
 	public Manager manager;
+	public Datahandler_manager datahandle;
 	
 	//constructor
-	public ManagerOperation(Board b, Manager m) {
+	public ManagerOperation( Manager m, Board b) {
 		super(b);
 		this.manager = m;
 		// TODO Auto-generated constructor stub
 	}
 	
 	//methods
-	public Notice CreateNotice(Scholar sch, String title, String cont, Calendar c, int accept) {
+	public Notice CreateNotice(Scholar sch, String title, String cont, int accept) {
 		Notice n = new Notice(sch, accept);
 		n.setTitle(title);
 		n.setContent(cont);
-		n.setExpiredate(c);
 		return n;
 	}//make notice instance with inputs from GUI text boxes.
 	
@@ -105,6 +105,8 @@ public class ManagerOperation extends Operate{
 	public void setManager(Manager manager) {
 		this.manager = manager;
 	}
+	
+	
 	
 	
 }

@@ -1,6 +1,9 @@
 package Information;
 
-public class Honor extends Scholar{
+import java.io.Serializable;
+
+public class Honor extends Scholar implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	public Honor(String name) {
 		this.name = name;
