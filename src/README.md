@@ -1,17 +1,10 @@
-# 2019.05.28 Log
+# 2019.05.21 Log
 
-### Database
-- 학생 데이터로 데이터베이스 구성
+### Data Handler
+- 데이터 관리를 위해 데이터 핸들러 생성, 데이터 save 및 load가 가능
+- 저장된 데이터 파일을 불러와서 보드 생성 (맨 처음 Main에서 보드 생성 - 현재 null에 대한 예외 상황 처리 X)
 
 ### UI
-- 뒤로 가기 기능 구현
-- Recruit : JList에는 캘린더 구현이 안 되어서 일단은 전체 Notice가 나오도록 했고, Notice 선택하고 선발을 누르면 ManagerOperation의
-           Recruiting 메소드 실행 (선발 기준 정해둠)
-- Request : 공지 선택하고, 신청을 누르면 본인 인증 번호를 입력하고 신청 완료가 되면 StudentOperation의 Requesting 메소드 실행 및 Save
-- Edit : UI만 완성
-- RequestView : StudentOperation이 가지고 있는 Student 객체에서 ReqList를 가져와서 해당 객체의 신청 목록을 JList에 보여줌
-               하지만, Request와 Recruit의 데이터 직렬화 X, 저장 X -> 구현 필요
-               
-### 테스트
-- 학생 : 공지 조회, 신청, 신청 현황 조회 (신청하고 뒤로 가기해서 해야 함) 가능
-- 관리자 : 공지 게시, 조회, 삭제 가능
+- Posting : Data 핸들러 사용해서 데이터 직렬화해서 저장 (.dat)
+- View : 보드에 있는 NoticeList에서 제목만 가져와서 JList에 Add (이때, 해당 제목들 누르면 index 반환, NoticeList index와 동일)
+- View : JList에 있는 아이템 선택 -> 보기 버튼 누르면 제목과 내용에 해당 Notice의 제목, 내용 보여줌 (위의 index )

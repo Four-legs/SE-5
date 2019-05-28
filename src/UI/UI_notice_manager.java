@@ -22,6 +22,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import javax.swing.event.ListSelectionListener;
@@ -35,6 +36,7 @@ public class UI_notice_manager extends JFrame {
 	int index;
 	private JPanel contentPane;
 	private Board b;
+	JList list = new JList();
 	/**
 	 * Create the frame.
 	 */
@@ -49,33 +51,15 @@ public class UI_notice_manager extends JFrame {
 		JButton btnback = new JButton("\uB4A4\uB85C \uAC00\uAE30");
 		btnback.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 					//back button click
 					dispose();
 					new UI_main_manager(mng_oper).setVisible(true);
-					
 			}
 		});
 		
 		
-		
-		JList list = new JList();
-		list.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
-				index = list.getSelectedIndex();
-			}
-		});
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		DefaultListModel list_content = new DefaultListModel();
-		// list title load
-		for(int i=0; i < b.getNoticeList().size(); i++)
-		{
-			//System.out.printf("list : %s",brd.getNoticeList().get(i).getTitle());
-			list_content.addElement(b.getNoticeList().get(i).getTitle());
-		}
-		list.setModel(list_content);
-		
-		
+		list_refresh();
+	
 		JLabel l_title = new JLabel("\uC81C\uBAA9");
 		
 		JTextPane t_title = new JTextPane();
@@ -85,7 +69,7 @@ public class UI_notice_manager extends JFrame {
 		
 		JLabel l_notice = new JLabel("\uACF5\uC9C0\uC0AC\uD56D");
 		
-		JButton btnview = new JButton("\uBCF4\uAE30");
+		JButton btnview = new JButton("\uACF5\uC9C0 \uBCF4\uAE30");
 		btnview.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// view button click
@@ -101,10 +85,9 @@ public class UI_notice_manager extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == btnposting)
 				{
+					dispose();
 					//posting button click
-					UI_notice_posting notice_post = new UI_notice_posting(mng_oper);
-					notice_post.setVisible(true);
-					
+					new UI_notice_posting(mng_oper).setVisible(true);					
 				}
 			}
 		});
@@ -114,13 +97,33 @@ public class UI_notice_manager extends JFrame {
 	          public void actionPerformed(ActionEvent e) {
 	             if(e.getSource() == btnreq)
 	             {
-	               UI_recruit recruit = new UI_recruit(mng_oper);
+	                UI_recruit recruit = new UI_recruit(mng_oper);
 	                recruit.setVisible(true);
 	             }
 	          }
 	       });
 		
 		JButton btnedit = new JButton("\uACF5\uC9C0 \uC218\uC815");
+		btnedit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//edit button click
+				
+			}
+		});
+		
+		JButton btndelete = new JButton("\uACF5\uC9C0 \uC0AD\uC81C");
+		btndelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//delete button click
+				try {
+					mng_oper.NoticeDelete(b.getNoticeList().get(index));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				list_refresh();
+			}
+		});
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -146,9 +149,11 @@ public class UI_notice_manager extends JFrame {
 									.addGap(18)
 									.addComponent(list, GroupLayout.PREFERRED_SIZE, 328, GroupLayout.PREFERRED_SIZE))))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(180)
+							.addGap(89)
 							.addComponent(btnview)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btndelete)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnposting)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnedit)
@@ -176,14 +181,34 @@ public class UI_notice_manager extends JFrame {
 						.addComponent(list, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnedit)
 						.addComponent(btnview)
 						.addComponent(btnposting)
-						.addComponent(btnback)
+						.addComponent(btndelete)
 						.addComponent(btnreq)
-						.addComponent(btnedit))
+						.addComponent(btnback))
 					.addGap(35))
 		);
 		contentPane.setLayout(gl_contentPane);
+	
+	}
+	
+	public void list_refresh()
+	{
+		list.addListSelectionListener(new ListSelectionListener() {
+		public void valueChanged(ListSelectionEvent e) {
+			index = list.getSelectedIndex();
+		}
+		});
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		DefaultListModel list_content = new DefaultListModel();
+		// list title load
+		for(int i=0; i < b.getNoticeList().size(); i++)
+		{
+			//System.out.printf("list : %s",brd.getNoticeList().get(i).getTitle());
+			list_content.addElement(b.getNoticeList().get(i).getTitle());
+		}
+		list.setModel(list_content);
 	
 	}
 }

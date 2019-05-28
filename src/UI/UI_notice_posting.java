@@ -36,17 +36,17 @@ public class UI_notice_posting extends JFrame {
    private Calendar expiredate = Calendar.getInstance();
    private int year,month,day; //expiredate
    private int accept;
-   private Board brd;
+   //private Board brd;
    private Scholar s;
-   private ManagerOperation manopr;
+ //  private ManagerOperation manopr;
    
    
    /**
     * Create the frame.
     */
    public UI_notice_posting(ManagerOperation mng_oper) {
-     this.brd = mng_oper.getBrd();
-     this.manopr = mng_oper;
+  //   this.brd = mng_oper.getBrd();
+    // this.manopr = mng_oper;
      
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setBounds(100, 100, 800, 500);
@@ -62,12 +62,26 @@ public class UI_notice_posting extends JFrame {
       JLabel label_1 = new JLabel("\uBAA8\uC9D1 \uC720\uD615");
       
       JLabel lblNewLabel = new JLabel("\uBAA8\uC9D1 \uC778\uC6D0");
+      JComboBox recruit_detail = new JComboBox();
       
+      recruit_detail.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            JComboBox jcb = (JComboBox)e.getSource();
+            detail = jcb.getSelectedItem().toString();
+            System.out.printf("detail: %s\n",detail);
+         }
+      });
       JComboBox recruit_type = new JComboBox();
       recruit_type.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             JComboBox jcb = (JComboBox)e.getSource();
             type = jcb.getSelectedItem().toString();
+            if(type.equals("己利快荐厘切积"))
+            {
+            	recruit_detail.setEnabled(false);
+            }
+            else
+            	recruit_detail.setEnabled(true);
             System.out.printf("type: %s\n",type);   
          }
       });
@@ -115,14 +129,7 @@ public class UI_notice_posting extends JFrame {
       expire_day.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
       
       JLabel label_2 = new JLabel("\uB0B4\uC6A9");
-      JComboBox recruit_detail = new JComboBox();
-      recruit_detail.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
-            JComboBox jcb = (JComboBox)e.getSource();
-            detail = jcb.getSelectedItem().toString();
-            System.out.printf("detail: %s\n",detail);
-         }
-      });
+      
       
       JTextArea content_field = new JTextArea();
       
@@ -176,6 +183,8 @@ public class UI_notice_posting extends JFrame {
                   
                   try {
       				mng_oper.NoticePosting(n);
+      				dispose();
+      				new UI_notice_manager(mng_oper).setVisible(true);
       			} catch (IOException e1) {
       				// TODO Auto-generated catch block
       			e1.printStackTrace();
@@ -185,18 +194,19 @@ public class UI_notice_posting extends JFrame {
          }
       });
       
-      JButton btn_exit = new JButton("\uB2EB\uAE30");
-      btn_exit.addActionListener(new ActionListener() {
+      JButton btn_back = new JButton("\uB4A4\uB85C\uAC00\uAE30");
+      btn_back.addActionListener(new ActionListener() {
       	public void actionPerformed(ActionEvent e) {
-      		if(btn_exit == e.getSource())
+      		if(btn_back == e.getSource())
       		{
       			dispose();
+      			new UI_notice_manager(mng_oper).setVisible(true);
       		}
       	}
       });
       
      
-      recruit_detail.setModel(new DefaultComboBoxModel(new String[] {"-", "\uC0AC\uBB34\uBCF4\uC870", "\uC2E4\uC2B5\uC2E4 \uAD00\uB9AC", "\uAC15\uC758\uC2E4 \uAD00\uB9AC"}));
+      recruit_detail.setModel(new DefaultComboBoxModel(new String[] {"\uC0AC\uBB34\uBCF4\uC870", "\uC2E4\uC2B5\uC2E4 \uAD00\uB9AC", "\uAC15\uC758\uC2E4 \uAD00\uB9AC"}));
       GroupLayout gl_contentPane = new GroupLayout(contentPane);
       gl_contentPane.setHorizontalGroup(
          gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -220,7 +230,7 @@ public class UI_notice_posting extends JFrame {
                   .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
                      .addComponent(btn_posting)
                      .addPreferredGap(ComponentPlacement.RELATED)
-                     .addComponent(btn_exit))
+                     .addComponent(btn_back))
                   .addGroup(gl_contentPane.createSequentialGroup()
                      .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
                         .addGroup(gl_contentPane.createSequentialGroup()
@@ -268,7 +278,7 @@ public class UI_notice_posting extends JFrame {
                   .addComponent(content_field, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE))
                .addPreferredGap(ComponentPlacement.UNRELATED)
                .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                  .addComponent(btn_exit)
+                  .addComponent(btn_back)
                   .addComponent(btn_posting))
                .addGap(6))
       );

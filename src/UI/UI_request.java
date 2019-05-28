@@ -71,8 +71,8 @@ public class UI_request extends JFrame {
 					System.out.printf("pwlist : %s\n",pwlist.get(i).getVerify());
 					System.out.printf("pass word : %s\n",password);
 					
-					//*****이채현이..이름과 학번을 반대로 저장한 dat파일을 우리에게줬음...어이가없고..어이가없다..********
-					if( pwlist.get(i).getStudentNumber().equals(sop.student.getName()) )
+					
+					if( pwlist.get(i).getStudentNumber().equals(sop.student.getStudentNumber()) )
 					{
 						
 						if(pwlist.get(i).getVerify().equals(password))
@@ -98,6 +98,13 @@ public class UI_request extends JFrame {
 			}
 		});
 		
+		JButton btnexit = new JButton("\uB2EB\uAE30");
+		btnexit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
 		
 		
 		
@@ -105,7 +112,7 @@ public class UI_request extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(22, Short.MAX_VALUE)
+					.addContainerGap(16, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -123,14 +130,18 @@ public class UI_request extends JFrame {
 							.addComponent(btnrequest)))
 					.addGap(7))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(150)
+					.addGap(147)
 					.addComponent(alarm)
 					.addContainerGap(176, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(170)
+					.addComponent(btnexit)
+					.addContainerGap(195, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(28, Short.MAX_VALUE)
+					.addContainerGap(30, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(t_title, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label))
@@ -141,7 +152,9 @@ public class UI_request extends JFrame {
 						.addComponent(btnrequest))
 					.addGap(18)
 					.addComponent(alarm)
-					.addGap(109))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnexit)
+					.addGap(68))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

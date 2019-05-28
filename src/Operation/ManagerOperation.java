@@ -21,7 +21,6 @@ public class ManagerOperation extends Operate{
 
 	//attributes
 	public Manager manager;
-	public Datahandler_manager datahandle;
 	
 	//constructor
 	public ManagerOperation( Manager m, Board b) {
@@ -115,8 +114,11 @@ public class ManagerOperation extends Operate{
 		
 	}
 	
-	public void NoticeDelete(Notice n) {
+	public void NoticeDelete(Notice n) throws FileNotFoundException, IOException {
 		super.brd.delNotice(n);
+		Datahandler_manager dtm = new Datahandler_manager();
+		dtm.board_save(super.brd);
+		
 	}
 
 	public Manager getManager() {
