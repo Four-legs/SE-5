@@ -9,3 +9,7 @@
 ### SonarCloud
 https://sonarcloud.io/dashboard?id=SE-5
 
+### 5조 하비스트 완성물.zip
+- 최종발표 PPT, 통합정보 엑셀파일, 최종 보고서, 서버-클라이언트 최종 완성 코드
+- 코드 실행은 메뉴얼을 참조해주세요.
+
